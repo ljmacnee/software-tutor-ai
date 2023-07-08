@@ -54,7 +54,10 @@ def get_conversation_chain(vectorstore):
 
 
 def handle_userinput(user_question):
-    response = st.session_state.conversation({'question': user_question})
+
+    system_role = "You are a tutor teaching the NSW high school course HSC Software Design & Development."  # Set the desired system role here
+
+    response = st.session_state.conversation({'question': system_role+user_question})
     st.session_state.chat_history = response['chat_history']
 
     for i, message in enumerate(st.session_state.chat_history):
